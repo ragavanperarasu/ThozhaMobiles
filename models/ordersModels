@@ -2,33 +2,26 @@ import customerModels from "./customerModels";
 
 const mongoose=require ("mongoose");
 const userConnection=("../db/userDB");
-
-
-
-const productItemSchema = new Schema({
-  productId: { type: Schema.Types.ObjectId, ref: "Product" },
-  variantId: { type: Schema.Types.ObjectId, ref: "Variant" },
-  quantity: Number, 
-  price: Number,
-});
+const{v4:uuid}=require("uuid");
 
 const ordersSchema = new Schema({
-  orderNumber: { type: String, unique: true},
-  customerId: { type: Schema.Types.ObjectId, ref: "Customer" },
-  productItems: [productItemSchema],
-  totalAmount: { type: Number, required: true },
-  discountAmount: { type: Number, default: 0 },
-  paymentMethod: String ,
-  paymentStatus: String,
-  orderStatus: String,
-  shippingAddress: String,
-  billingAddress: String,
-  orderedAt: { type: Date, default: Date.now },
-  deliveredAt: { type: Date },
+ouid: { type: String, index: true, defult: uuidv4 },
+  ordNum: type: String, 
+  custId: { type: Schema.Types.ObjectId, ref: "Customer" },
+  proditms: [productItemSchema],
+  totamt: Number,
+  disAmt: Number,
+  paymMet: String ,
+  paymStat: String,
+  ordStat: String,
+  shipAdd: String,
+  billAdd: String,
+  ordAt: { type: Date, default: Date.now },
+  delivAt: { type: Date },
 }, { timestamps: true });
 
 
 
-const orderModels=customerConnetion.model("order",customerModels);
+const orderModels=customerConnetion.model("orders",customerModels);
 
 module.exports=orderModels;

@@ -1,22 +1,28 @@
-const mongoose = require ("mongoose");
-const userConnection = require ("../db/userDB");
+const mongoose = require("mongoose");
+const userConnection = require("../db/userDB");
+const { v4: uuid } = require("uuid");
 
 
 const customerSchema = new Schema({
-  name: String, 
-  email: String,
-  phone1:  Number,
-  phone2: Number,
-  shipmentAddress: String,
-  billingAddress: String,
-  orders: [{ type: Schema.Types.ObjectId, ref: "Orders" }],
-  customerId: { type: Number, unique: true },
-  dateOfBirth: Date,
-  gender: String,
-  profileImage: String,
+
+    cuid: {
+        type: String, index: true, defult: uuidv4
+    },
+
+    name: String,
+    email: String,
+    phno: Number,
+    phnt: Number,
+    sipadd: String,
+    billAdd: String,
+    ord: [{ type: Schema.Types.ObjectId, ref: "Orders" }],
+    custid: { type: Number, unique: true },
+    dob: Date,
+    sex: String,
+    profimg: String,
 }, { timestamps: true });
 
 
-const customerModels=customerConnection.model("customer",customerModels);
+const customerModels = customerConnection.model("customers", customerModels);
 
-module.exports=customerModels;
+module.exports = customerModels;
