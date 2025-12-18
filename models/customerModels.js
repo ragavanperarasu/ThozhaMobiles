@@ -3,17 +3,17 @@ const userConnection = require ("../db/userDB");
 
 
 const customerSchema = new Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  phone1: { type: Number, required: true },
-  phone2: { type: Number },
-  shipmentAddress: { type: String },
-  billingAddress: { type: String },
+  name: String, 
+  email: String,
+  phone1:  Number,
+  phone2: Number,
+  shipmentAddress: String,
+  billingAddress: String,
   orders: [{ type: Schema.Types.ObjectId, ref: "Orders" }],
   customerId: { type: Number, unique: true },
-  dateOfBirth: { type: Date },
-  gender: { type: String },
-  profileImage: { type: String },
+  dateOfBirth: Date,
+  gender: String,
+  profileImage: String,
 }, { timestamps: true });
 
 

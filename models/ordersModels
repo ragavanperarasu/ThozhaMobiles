@@ -6,23 +6,23 @@ const userConnection=("../db/userDB");
 
 
 const productItemSchema = new Schema({
-  productId: { type: Schema.Types.ObjectId, ref: "Product", required: true },
+  productId: { type: Schema.Types.ObjectId, ref: "Product" },
   variantId: { type: Schema.Types.ObjectId, ref: "Variant" },
-  quantity: { type: Number, default: 1 },
-  price: { type: Number, required: true },
+  quantity: Number, 
+  price: Number,
 });
 
 const ordersSchema = new Schema({
-  orderNumber: { type: String, unique: true, required: true },
-  customerId: { type: Schema.Types.ObjectId, ref: "Customer", required: true },
+  orderNumber: { type: String, unique: true},
+  customerId: { type: Schema.Types.ObjectId, ref: "Customer" },
   productItems: [productItemSchema],
   totalAmount: { type: Number, required: true },
   discountAmount: { type: Number, default: 0 },
-  paymentMethod: { type: String },
-  paymentStatus: { type: String },
-  orderStatus: { type: String },
-  shippingAddress: { type: String },
-  billingAddress: { type: String },
+  paymentMethod: String ,
+  paymentStatus: String,
+  orderStatus: String,
+  shippingAddress: String,
+  billingAddress: String,
   orderedAt: { type: Date, default: Date.now },
   deliveredAt: { type: Date },
 }, { timestamps: true });
