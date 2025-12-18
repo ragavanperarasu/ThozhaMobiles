@@ -1,14 +1,22 @@
-const mongoose = require('mongoose');
-const productConnection = require('../db/productDB');
+const mongoose = require("mongoose");
+const productConnection = require("../db/productDB");
+const { v4: uuidv4 } = require("uuid");
 
-const variantSchema = new Schema({
-  productId: { type: Schema.Types.ObjectId, ref: "Product", required: true },
-  attribute: { type: String, required: true },
-  value: { type: String, required: true },
-  price: { type: Number, required: true },
-  stock: { type: Number, default: 0 },
-  assetIds: [{ type: Schema.Types.ObjectId, ref: "Asset" }],
-  inStock: { type: Boolean, default: true },
-}, { timestamps: true });
-const variantModel = productConnection.model('varient',variantSchema);
+const variantSchema = new Schema(
+  {
+    vuid: { type: String, index: true, default: uuidv4 },
+    puid: String,
+    attribute: [
+      {
+        key: String,
+        value: String,
+      },
+    ],
+    price: Number,
+    stock: { type: Number, default: 0 },
+    auid: String,
+  },
+  { timestamps: true }
+);
+const variantModel = productConnection.model("varients", variantSchema);
 module.exports = variantModel;

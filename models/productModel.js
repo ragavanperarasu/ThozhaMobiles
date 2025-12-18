@@ -1,28 +1,27 @@
-const mongoose = require('mongoose'); 
-const productConnection = require('../db/productDB'); 
+const mongoose = require("mongoose");
+const productConnection = require("../db/productDB");
+const { v4: uuidv4 } = require("uuid");
 
-
-
-const productSchema = new Schema({
-  name: { type: String, required: true },
-  brand: { type: String },
-  description: { type: String },
-  shortDescription: { type: String },
-  category: { type: String },
-  subCategory: { type: String },
-  tags: [{ type: String }],
-  keywords: [{ type: String }],
-  thumbnail: { type: Schema.Types.ObjectId, ref: "Asset" },
-  price: { type: Number, required: true },
-  discount: { type: Number, default: 0 },
-  stock: { type: Number, default: 0 },
-  minStock: { type: Number, default: 0 },
-  isFeatured: { type: Boolean, default: false },
-  averageRating: { type: Number, default: 0 },
-  reviewCount: { type: Number, default: 0 },
-  sellerId: { type: Schema.Types.ObjectId, ref: "Seller", required: true },
-  variantIds: [{ type: Schema.Types.ObjectId, ref: "Variant" }],
-  reviewIds: [{ type: Schema.Types.ObjectId, ref: "Review" }],
-}, { timestamps: true });
-const productModel = productConnection.model('product',productSchema);
+const productSchema = new Schema(
+  {
+    puid: { type: String, index: true, default: uuidv4},
+    name: String,
+    brand: String,
+    des: String,
+    sdes: String,
+    cat: String,
+    scat: String,
+    tags: [{ type: String }],
+    keys: [{ type: String }],
+    mimg: { type: String },
+    pri: Number,
+    dis: { type: Number, default: 0 },
+    stock: { type: Number, default: 0 },
+    isFeat: { type: Boolean, default: false },
+    avgrat: { type: Number, default: 0 },
+    revc: { type: Number, default: 0 },
+  },
+  { timestamps: true }
+);
+const productModel = productConnection.model("products", productSchema);
 module.exports = productModel;
