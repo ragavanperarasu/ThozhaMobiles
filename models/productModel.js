@@ -24,10 +24,5 @@ const productSchema = new Schema({
   variantIds: [{ type: Schema.Types.ObjectId, ref: "Variant" }],
   reviewIds: [{ type: Schema.Types.ObjectId, ref: "Review" }],
 }, { timestamps: true });
-
-
-
-
-const productModel = productConnection.model('product', MqttSchema);
-
-module.exports = mqttproductModel;
+const productModel = productConnection.model('product',productSchema);
+module.exports = productModel;
