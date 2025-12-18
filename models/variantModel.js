@@ -6,7 +6,7 @@ const variantSchema = new Schema(
   {
     vuid: { type: String, index: true, default: uuidv4 },
     puid: String,
-    attribute: [
+    atr: [
       {
         key: String,
         value: String,

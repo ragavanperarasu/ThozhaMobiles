@@ -6,8 +6,8 @@ const reviewSchema = new Schema(
     ruid: { type: String, index: true, default: uuidv4 },
     puid: String,
     cuid: String,
-    rating: Number,
-    review: String,
+    rat: Number,
+    rev: String,
     imgs: [{ type: String }],
   },
   { timestamps: true }
