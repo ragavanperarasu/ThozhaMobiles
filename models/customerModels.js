@@ -1,13 +1,7 @@
 const mongoose = require("mongoose");
 const userConnection = require("../db/userDB");
-const { v4: uuid } = require("uuid");
-
 
 const customerSchema = new Schema({
-
-    cuid: {
-        type: String, index: true, defult: uuidv4
-    },
 
     name: String,
     email: String,
@@ -15,8 +9,7 @@ const customerSchema = new Schema({
     phnt: Number,
     sipadd: String,
     billAdd: String,
-    ord: [{ type: Schema.Types.ObjectId, ref: "Orders" }],
-    custid: { type: Number, unique: true },
+    ord:Schema.Types.ObjectId,
     dob: Date,
     sex: String,
     profimg: String,

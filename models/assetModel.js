@@ -1,11 +1,8 @@
-const mongoose = require("mongoose");
-const productConnection = require("../db/productDB");
 const { v4: uuidv4 } = require("uuid");
 const assetSchema = new Schema(
   {
-    auid: { type: String, index: true, default: uuidv4 },
-    puid: String,
-    vuid: String,
+    puid:mongoose.Schema.Types.ObjectId,
+    vuid:mongoose.Schema.Types.ObjectId,
     url: [{ type: String }],
   },
   { timestamps: true }

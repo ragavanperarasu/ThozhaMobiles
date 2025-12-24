@@ -1,11 +1,14 @@
+<<<<<<< HEAD
 const mongoose = require("mongoose");
 const productConnection = require("../db/productDB");
+<<<<<<< HEAD
 const { v4: uuidv4 } = require("uuid");
 
 <<<<<<< HEAD
+=======
+>>>>>>> 81de8708beba940cdd59c87cf2cce2ee4d0ec787
 const productSchema = new Schema(
   {
-    puid: { type: String, index: true, default: uuidv4},
     name: String,
     brand: String,
     des: String,
@@ -27,6 +30,12 @@ const productSchema = new Schema(
 const productModel = productConnection.model("products", productSchema);
 module.exports = productModel;
 =======
+<<<<<<< HEAD
+=======
+const mongoose = require('mongoose'); 
+const productConnection = require('../db/productDB'); 
+
+>>>>>>> 81de8708beba940cdd59c87cf2cce2ee4d0ec787
 
 
 const productSchema = new Schema({

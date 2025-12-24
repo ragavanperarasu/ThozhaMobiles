@@ -1,11 +1,9 @@
 const mongoose = require("mongoose");
 const productConnection = require("../db/productDB");
-const { v4: uuidv4 } = require("uuid");
 const reviewSchema = new Schema(
   {
-    ruid: { type: String, index: true, default: uuidv4 },
-    puid: String,
-    cuid: String,
+    puid:mongoose.Schema.Types.ObjectId,
+    cuid:mongoose.Schema.Types.ObjectId,
     rat: Number,
     rev: String,
     imgs: [{ type: String }],
