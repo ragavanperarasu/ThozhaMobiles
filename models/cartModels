@@ -1,0 +1,19 @@
+const mongoose = require("mongoose");
+const userConnection = require("../db/userDB");
+const { v4:uuid } = require("uuid");
+
+
+const cartSchema = new Schema({
+
+    crtid: { type: String, index: true, defult: uuidv4 },
+
+    customerId: { type: Schema.Types.ObjectId, ref: "Customer" },
+    items: [{ type: Schema.Types.ObjectId, ref: "Product" }],
+    totqua: Number,
+    totpri: Number,
+}, { timestamps: true });
+
+
+const cartModels = customerConection.model("carts", cartModels);
+
+module.export = cartModels;
