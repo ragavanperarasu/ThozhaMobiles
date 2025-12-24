@@ -1,11 +1,8 @@
 const mongoose = require("mongoose");
 const productConnection = require("../db/productDB");
-const { v4: uuidv4 } = require("uuid");
-
 const variantSchema = new Schema(
   {
-    vuid: { type: String, index: true, default: uuidv4 },
-    puid: String,
+    puid:mongoose.Schema.Types.ObjectId,
     atr: [
       {
         key: String,
@@ -14,7 +11,7 @@ const variantSchema = new Schema(
     ],
     price: Number,
     stock: { type: Number, default: 0 },
-    auid: String,
+    auid:mongoose.Schema.Types.ObjectId,
   },
   { timestamps: true }
 );
