@@ -1,13 +1,12 @@
 const mongoose = require("mongoose");
 const userConnection = require("../db/userDB");
+<<<<<<< HEAD
 const { v4: uuidv4 } = require("uuidv4");
 
+=======
+>>>>>>> c20e5b704f847543c8384471ff653b4225f74f34
 
 const customerSchema = new Schema({
-
-    cuid: {
-        type: String, index: true, defult: uuidv4
-    },
 
     name: String,
     email: String,
@@ -15,8 +14,7 @@ const customerSchema = new Schema({
     phnt: Number,
     sipadd: String,
     billAdd: String,
-    ord: [{ type: Schema.Types.ObjectId, ref: "Orders" }],
-    custid: { type: Number, unique: true },
+    ord:Schema.Types.ObjectId,
     dob: Date,
     sex: String,
     profimg: String,
