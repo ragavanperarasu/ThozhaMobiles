@@ -1,16 +1,17 @@
 const mongoose = require("mongoose");
-const productConnection = require("../db/productDB");
-const reviewSchema = new Schema(
-  {
-    puid:mongoose.Schema.Types.ObjectId,
-    cuid:mongoose.Schema.Types.ObjectId,
-    rat: Number,
-    rev: String,
-    imgs: [{ type: String }],
-  },
-  { timestamps: true }
-);
+const { Schema } = mongoose;
 
-const reviewModel = productConnection.model("reviews", reviewSchema);
+module.exports = (productConnection) => {
+  const reviewSchema = new Schema(
+    {
+      puid: { type: Schema.Types.ObjectId, required: true },
+      cuid: { type: Schema.Types.ObjectId, required: true },
+      rat: { type: Number, required: true, min: 1, max: 5 },
+      rev: { type: String },
+      imgs: [{ type: String }]
+    },
+    { timestamps: true }
+  );
 
-module.exports = reviewModel;
+  return productConnection.model("reviews", reviewSchema);
+};
