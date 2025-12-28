@@ -1,18 +1,16 @@
-require('dotenv').config();
-const mongoose = require('mongoose');
+require("dotenv").config();
+const mongoose = require("mongoose");
 
-const productConnection = mongoose.createConnection(process.env.MONGODB_PRODUCT_URI);
 
-productConnection.on('connected', () => {
-  console.log('✅ MongoDB product DB connected successfully');
-});
+const connectProductDB = async () => {
+ try {
+    const conn = await mongoose.createConnection(process.env.DB_CONNECTION);
+    console.log("✅ Product DB connected");
+    return conn;
+  } catch (error) {
+    console.error("❌ Product DB connection failed:", error.message);
+    process.exit(1);
+  }
+};
 
-productConnection.on('error', (err) => {
-  console.error('❌ MongoDB product DB connection error:', err);
-});
-
-productConnection.on('disconnected', () => {
-  console.log('⚠️ MongoDB product DB disconnected');
-});
-
-module.exports = productConnection;
+module.exports = connectProductDB;
