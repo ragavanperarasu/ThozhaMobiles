@@ -1,11 +1,27 @@
-const { v4: uuidv4 } = require("uuid");
-const assetSchema = new Schema(
-  {
-    puid:mongoose.Schema.Types.ObjectId,
-    vuid:mongoose.Schema.Types.ObjectId,
-    url: [{ type: String }],
-  },
-  { timestamps: true }
-);
-const assetModel = productConnection.model("assets", assetSchema);
-module.exports = assetModel;
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
+
+module.exports = (dbConnection) => {
+  const assetSchema = new Schema(
+    {
+      puid: {
+        type: Schema.Types.ObjectId,
+        required: true
+      },
+      vuid: {
+        type: Schema.Types.ObjectId,
+        required: true
+      },
+      url: [
+        {
+          type: String,
+          required: true
+        }
+      ]
+    },
+    { timestamps: true }
+  );
+
+  // ✅ ONLY use dbConnection passed from server.js
+  return dbConnection.model("Asset", assetSchema);
+};

@@ -4,7 +4,7 @@ module.exports = (User) => {
   const router = express.Router();
 
   // Update customer by ID
-  router.put("/:id", async (req, res) => {
+  router.put("/update/:id", async (req, res) => {
     try {
       const { id } = req.params;
       const updateData = req.body; // Fields to update
