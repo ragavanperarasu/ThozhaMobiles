@@ -27,6 +27,8 @@ const updateVariantRoute = require("./routers/products/variants/putVariant");// 
 const getVariantRoute = require("./routers/products/variants/getVariant");
 const postReviewRoute = require("./routers/products/reviews/postNewReview");
 const deleteReviewRoute = require("./routers/products/reviews/deleteReview");
+const updateReviewRoute = require("./routers/products/reviews/putReview");
+const getReviewRoute = require("./routers/products/reviews/getReview");
 const app = express();
 
 // Middleware
@@ -62,7 +64,9 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
     app.use("/variants", updateVariantRoute(Variant));
     app.use("/variants", getVariantRoute(Variant));
     app.use("/reviews", postReviewRoute(Review));
-    app.use("/reviews", deleteReviewRoute(Review));// delete route mounted after User model is ready
+    app.use("/reviews", deleteReviewRoute(Review));
+    app.use("/reviews", updateReviewRoute(Review));
+    app.use("/reviews", getReviewRoute(Review));// delete route mounted after User model is ready
   
   
     // 4️⃣ Start server
