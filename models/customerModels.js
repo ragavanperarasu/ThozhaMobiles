@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const userConnection = require("../db/userDB");
-const { v4: uuid } = require("uuid");
+const { v4: uuidv4 } = require("uuidv4");
 
 
 const customerSchema = new Schema({

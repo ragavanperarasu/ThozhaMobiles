@@ -2,7 +2,7 @@ import customerModels from "./customerModels";
 
 const mongoose=require ("mongoose");
 const userConnection=("../db/userDB");
-const{v4:uuid}=require("uuid");
+const{v4:uuid}=require("uuidv4");
 
 const ordersSchema = new Schema({
 ouid: { type: String, index: true, defult: uuidv4 },
