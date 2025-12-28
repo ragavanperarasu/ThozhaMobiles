@@ -14,8 +14,10 @@ const postNewProductRoute = require("./routers/products/postNewProduct");
 const deleteProductRoute = require("./routers/products/deleteProduct");
 const updateProductRoute = require("./routers/products/putProduct");
 const postNewUserRoute = require("./routers/users/postNewuser");
-const deleteUserRoute = require("./routers/users/deleteuser");
-const updateCustomerRoute = require("./routers/users/putUser"); // matches your file name
+const deleteUserRoute = require("./routers/users/deleteUser");
+const updateCustomerRoute = require("./routers/users/putUser");
+const getUserRoute = require("./routers/users/getUser");
+ // matches your file name
 
 const app = express();
 
@@ -41,7 +43,9 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
     app.use("/products", updateProductRoute(Product));
     app.use("/users", postNewUserRoute(User));
     app.use("/users", deleteUserRoute(User));
-    app.use("/users", updateCustomerRoute(User)); // delete route mounted after User model is ready
+    app.use("/users", updateCustomerRoute(User));
+    app.use("/users", getUserRoute(User));
+ // delete route mounted after User model is ready
 
     // 4️⃣ Start server
     app.listen(5000, () => console.log("🚀 Server running on port 5000"));
