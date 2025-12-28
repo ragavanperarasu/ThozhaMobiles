@@ -18,27 +18,17 @@ const postNewProductRoute = require("./routers/products/postNewProduct");
 const deleteProductRoute = require("./routers/products/deleteProduct");
 const updateProductRoute = require("./routers/products/putProduct");
 const postNewUserRoute = require("./routers/users/postNewuser");
-<<<<<<< HEAD
-
 const deleteUserRoute = require("./routers/users/deleteuser");
 const updateCustomerRoute = require("./routers/users/putUser");
 const postAddCartRoute = require("./routers/cart/postAddCart") ;
-
-const getUserRoute = require("./routers/users/getUser");
-const deleteCartRoute = require("./routers/cart/deleteCart");
-const putCartRoute= require("./routers/cart/putCart");
-
-=======
-const deleteUserRoute = require("./routers/users/deleteuser");
-const updateCustomerRoute = require("./routers/users/putUser");
-const postAddCartRoute = require("./routers/cart/postAddCart") ;
+const getCartRoute = require("./routers/cart/getCart.js");
 const postNewVariantRoute = require("./routers/products/variants/postNewVariant");
 const deleteVariantRoute = require("./routers/products/variants/deleteVariant");
 const updateVariantRoute = require("./routers/products/variants/putVariant");// matches your file name
 const getVariantRoute = require("./routers/products/variants/getVariant");
 const postReviewRoute = require("./routers/products/reviews/postNewReview");
 const deleteReviewRoute = require("./routers/products/reviews/deleteReview");
->>>>>>> 1e0c6b86235c27bd93f24aff7f8cf29dc7010c04
+const getCart = require("./routers/cart/getCart.js");
 const app = express();
 
 // Middleware
@@ -68,15 +58,8 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
     app.use("/users", postNewUserRoute(User));
     app.use("/users", deleteUserRoute(User));
     app.use("/users", updateCustomerRoute(User));
-<<<<<<< HEAD
-    app.use("/cart",postAddCartRoute(Cart)); // delete route mounted after User model is ready
-
-    app.use("/users", getUserRoute(User));
-    app.use("/cart", deleteCartRoute(Cart));
-    app.use("/cart", putCartRoute(Cart));
-
-=======
     app.use("/cart",postAddCartRoute(Cart));
+    app.use("/cart",getCartRoute(Cart));
     app.use("/variants", postNewVariantRoute(Variant));
     app.use("/variants", deleteVariantRoute(Variant)); 
     app.use("/variants", updateVariantRoute(Variant));
@@ -85,7 +68,6 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
     app.use("/reviews", deleteReviewRoute(Review));// delete route mounted after User model is ready
   
   
->>>>>>> 1e0c6b86235c27bd93f24aff7f8cf29dc7010c04
     // 4️⃣ Start server
     app.listen(5000, () => console.log("🚀 Server running on port 5000"));
   } catch (err) {
