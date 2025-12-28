@@ -44,6 +44,10 @@ const putCartRoute= require("./routers/carts/putCart");
 
 const getCart = require("./routers/carts/getCart.js");
 const postOrderRoute = require("./routers/orders/postNewOrder.js");
+const deleteOrderRoute = require("./routers/orders/deleteOrder.js");
+const updateOrderRoute = require("./routers/orders/putOrder.js");
+const getOrderRoute = require("./routers/orders/getOrder.js");
+const getOrderbycusRoute = require("./routers/orders/getOrderbyCustomer.js");
 
 const app = express();
 
@@ -86,7 +90,12 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
     app.use("/reviews", deleteReviewRoute(Review));
     app.use("/reviews", updateReviewRoute(Review));
     app.use("/reviews", getReviewRoute(Review));
-    app.use("/orders", postOrderRoute(Order));// delete route mounted after User model is ready
+    app.use("/orders", postOrderRoute(Order));
+    app.use("/orders",deleteOrderRoute(Order));
+    app.use("/orders",updateOrderRoute(Order));
+    app.use("/orders",getOrderRoute(Order));
+    app.use("/orders",getOrderbycusRoute(Order));
+    // delete route mounted after User model is ready
   
   
     // 4️⃣ Start server
