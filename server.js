@@ -18,6 +18,7 @@ const postNewProductRoute = require("./routers/products/postNewProduct");
 const deleteProductRoute = require("./routers/products/deleteProduct");
 const updateProductRoute = require("./routers/products/putProduct");
 const postNewUserRoute = require("./routers/users/postNewuser");
+<<<<<<< HEAD
 const deleteUserRoute = require("./routers/users/deleteuser");
 const updateCustomerRoute = require("./routers/users/putUser");
 const postAddCartRoute = require("./routers/cart/postAddCart") ;
@@ -29,6 +30,17 @@ const postReviewRoute = require("./routers/products/reviews/postNewReview");
 const deleteReviewRoute = require("./routers/products/reviews/deleteReview");
 const updateReviewRoute = require("./routers/products/reviews/putReview");
 const getReviewRoute = require("./routers/products/reviews/getReview");
+=======
+
+const deleteUserRoute = require("./routers/users/deleteuser");
+const updateCustomerRoute = require("./routers/users/putUser");
+const postAddCartRoute = require("./routers/cart/postAddCart") ;
+
+const getUserRoute = require("./routers/users/getUser");
+const deleteCartRoute = require("./routers/cart/deleteCart");
+const putCartRoute= require("./routers/cart/putCart");
+
+>>>>>>> 1781d6b80cbface48d9e0d670b49eb4fa88ca846
 const app = express();
 
 // Middleware
@@ -58,6 +70,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
     app.use("/users", postNewUserRoute(User));
     app.use("/users", deleteUserRoute(User));
     app.use("/users", updateCustomerRoute(User));
+<<<<<<< HEAD
     app.use("/cart",postAddCartRoute(Cart));
     app.use("/variants", postNewVariantRoute(Variant));
     app.use("/variants", deleteVariantRoute(Variant)); 
@@ -69,6 +82,14 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
     app.use("/reviews", getReviewRoute(Review));// delete route mounted after User model is ready
   
   
+=======
+    app.use("/cart",postAddCartRoute(Cart)); // delete route mounted after User model is ready
+
+    app.use("/users", getUserRoute(User));
+    app.use("/cart", deleteCartRoute(Cart));
+    app.use("/cart", putCartRoute(Cart));
+
+>>>>>>> 1781d6b80cbface48d9e0d670b49eb4fa88ca846
     // 4️⃣ Start server
     app.listen(5000, () => console.log("🚀 Server running on port 5000"));
   } catch (err) {
