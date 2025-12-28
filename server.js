@@ -22,12 +22,14 @@ const postNewUserRoute = require("./routers/users/postNewuser");
 const deleteUserRoute = require("./routers/users/deleteuser");
 const updateCustomerRoute = require("./routers/users/putUser");
 const postAddCartRoute = require("./routers/cart/postAddCart") ;
+const getCartRoute = require("./routers/cart/getCart.js");
 const postNewVariantRoute = require("./routers/products/variants/postNewVariant");
 const deleteVariantRoute = require("./routers/products/variants/deleteVariant");
 const updateVariantRoute = require("./routers/products/variants/putVariant");// matches your file name
 const getVariantRoute = require("./routers/products/variants/getVariant");
 const postReviewRoute = require("./routers/products/reviews/postNewReview");
 const deleteReviewRoute = require("./routers/products/reviews/deleteReview");
+<<<<<<< HEAD
 const updateReviewRoute = require("./routers/products/reviews/putReview");
 const getReviewRoute = require("./routers/products/reviews/getReview");
 =======
@@ -41,6 +43,9 @@ const deleteCartRoute = require("./routers/cart/deleteCart");
 const putCartRoute= require("./routers/cart/putCart");
 
 >>>>>>> 1781d6b80cbface48d9e0d670b49eb4fa88ca846
+=======
+const getCart = require("./routers/cart/getCart.js");
+>>>>>>> 3a7ceda162f592fe60a1f884f8a48b33b0e720db
 const app = express();
 
 // Middleware
@@ -72,6 +77,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
     app.use("/users", updateCustomerRoute(User));
 <<<<<<< HEAD
     app.use("/cart",postAddCartRoute(Cart));
+    app.use("/cart",getCartRoute(Cart));
     app.use("/variants", postNewVariantRoute(Variant));
     app.use("/variants", deleteVariantRoute(Variant)); 
     app.use("/variants", updateVariantRoute(Variant));
