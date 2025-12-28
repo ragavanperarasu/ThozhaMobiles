@@ -53,7 +53,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
     app.use("/users", postNewUserRoute(User));
     app.use("/users", deleteUserRoute(User));
     app.use("/users", updateCustomerRoute(User));
-<<<<<<< HEAD
+<<<<<<< 
     app.use("/cart",postAddCartRoute(Cart)); // delete route mounted after User model is ready
 =======
     app.use("/users", getUserRoute(User));
