@@ -1,27 +1,33 @@
-import customerModels from "./customerModels";
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
 
-const mongoose=require ("mongoose");
-const userConnection=("../db/userDB");
-<<<<<<< HEAD:models/ordersModels
-const{v4:uuid}=require("uuidv4");
-=======
+module.exports = (userConnection) => {
+  const productItemSchema = new Schema(
+    {
+      productId: { type: Schema.Types.ObjectId, required: true },
+      quantity: { type: Number, required: true },
+      price: { type: Number, required: true }
+    },
+    { _id: false } // embedded schema doesn't need its own _id
+  );
 
->>>>>>> c20e5b704f847543c8384471ff653b4225f74f34:models/oredersModels.js
+  const orderSchema = new Schema(
+    {
+      ordNum: String,
+      custId: { type: Schema.Types.ObjectId, ref: "Customer", required: true },
+      proditms: [productItemSchema],
+      totamt: Number,
+      disAmt: Number,
+      paymMet: String,
+      paymStat: String,
+      ordStat: String,
+      shipAdd: String,
+      billAdd: String,
+      ordAt: { type: Date, default: Date.now },
+      delivAt: Date
+    },
+    { timestamps: true }
+  );
 
-const ordersSchema = new Schema({
-  ordNum:String, 
-  custId:Schema.Types.ObjectId,
-  proditms: [productItemSchema],
-  totamt: Number,
-  disAmt: Number,
-  paymMet: String ,
-  paymStat: String,
-  ordStat: String,
-  shipAdd: String,
-  billAdd: String,
-  ordAt: { type: Date, default: Date.now },
-  delivAt: { type: Date },
-}, { timestamps: true });
-
-const orderModels=customerConnetion.model("orders",customerModels);
-module.exports=orderModels;
+  return userConnection.model("Order", orderSchema);
+};
