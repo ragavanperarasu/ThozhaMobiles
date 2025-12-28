@@ -7,5 +7,5 @@ const cartSchema = new Schema({
     totqua: Number,
     totpri: Number,
 }, { timestamps: true });
-const cartModels = customerConection.model("carts", cartModels);
+const cartModels = customerConection.model("carts", cartSchema);
 module.export = cartModels;
