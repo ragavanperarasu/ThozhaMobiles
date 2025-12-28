@@ -17,7 +17,7 @@ module.exports = (Product) => {
   const upload = multer({ storage });
 
   // Update product route
-  router.put("/:id", upload.single("mimg"), async (req, res) => {
+  router.put("/update/:id", upload.single("mimg"), async (req, res) => {
     try {
       const { id } = req.params;
       const existingProduct = await Product.findById(id);
