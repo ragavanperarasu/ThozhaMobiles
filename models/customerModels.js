@@ -1,10 +1,7 @@
 const mongoose = require("mongoose");
 const userConnection = require("../db/userDB");
-<<<<<<< HEAD
 const { v4: uuidv4 } = require("uuidv4");
 
-=======
->>>>>>> c20e5b704f847543c8384471ff653b4225f74f34
 
 const customerSchema = new Schema({
 

@@ -4,7 +4,7 @@ module.exports = (User) => {
   const router = express.Router();
 
   // Delete customer by ID
-  router.delete("/:id", async (req, res) => {
+  router.delete("/delete/:id", async (req, res) => {
     try {
       const { id } = req.params;
 

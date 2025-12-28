@@ -9,6 +9,8 @@ const connectUserDB = require("./db/userDB");
 const createProductModel = require("./models/productModel");
 const createUserModel = require("./models/customerModel");
 const createCartModel = require("./models/cartModel");
+const createVariantModel = require("./models/variantModel");
+const createReviewModel = require("./models/reviewModel");
 
 
 // Routes
@@ -16,17 +18,15 @@ const postNewProductRoute = require("./routers/products/postNewProduct");
 const deleteProductRoute = require("./routers/products/deleteProduct");
 const updateProductRoute = require("./routers/products/putProduct");
 const postNewUserRoute = require("./routers/users/postNewuser");
-<<<<<<< HEAD
 const deleteUserRoute = require("./routers/users/deleteuser");
 const updateCustomerRoute = require("./routers/users/putUser");
-const postAddCartRoute = require("./routers/cart/postAddCart") ;// matches your file name
-=======
-const deleteUserRoute = require("./routers/users/deleteUser");
-const updateCustomerRoute = require("./routers/users/putUser");
-const getUserRoute = require("./routers/users/getUser");
- // matches your file name
->>>>>>> 74566a58c1f12893ba2303cfcd3beda52efebcff
-
+const postAddCartRoute = require("./routers/cart/postAddCart") ;
+const postNewVariantRoute = require("./routers/products/variants/postNewVariant");
+const deleteVariantRoute = require("./routers/products/variants/deleteVariant");
+const updateVariantRoute = require("./routers/products/variants/putVariant");// matches your file name
+const getVariantRoute = require("./routers/products/variants/getVariant");
+const postReviewRoute = require("./routers/products/reviews/postNewReview");
+const deleteReviewRoute = require("./routers/products/reviews/deleteReview");
 const app = express();
 
 // Middleware
@@ -45,6 +45,9 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
     const Product = createProductModel(productDB);
     const User = createUserModel(userDB);
     const Cart = createCartModel(userDB);
+    const Variant = createVariantModel(productDB);
+    const Review = createReviewModel(productDB);
+
 
     // 3️⃣ Mount routes
     app.use("/products", postNewProductRoute(Product));
@@ -53,13 +56,15 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
     app.use("/users", postNewUserRoute(User));
     app.use("/users", deleteUserRoute(User));
     app.use("/users", updateCustomerRoute(User));
-<<<<<<< 
-    app.use("/cart",postAddCartRoute(Cart)); // delete route mounted after User model is ready
-=======
-    app.use("/users", getUserRoute(User));
- // delete route mounted after User model is ready
->>>>>>> 74566a58c1f12893ba2303cfcd3beda52efebcff
-
+    app.use("/cart",postAddCartRoute(Cart));
+    app.use("/variants", postNewVariantRoute(Variant));
+    app.use("/variants", deleteVariantRoute(Variant)); 
+    app.use("/variants", updateVariantRoute(Variant));
+    app.use("/variants", getVariantRoute(Variant));
+    app.use("/reviews", postReviewRoute(Review));
+    app.use("/reviews", deleteReviewRoute(Review));// delete route mounted after User model is ready
+  
+  
     // 4️⃣ Start server
     app.listen(5000, () => console.log("🚀 Server running on port 5000"));
   } catch (err) {
