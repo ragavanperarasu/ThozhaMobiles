@@ -9,9 +9,8 @@ const connectUserDB = require("./db/userDB");
 const createProductModel = require("./models/productModel");
 const createUserModel = require("./models/customerModel");
 const createCartModel = require("./models/cartModel");
-const createVariantModel = require("./models/variantModel");
-const createReviewModel = require("./models/reviewModel");
-const createOrderModel = require("./models/oredersModel");
+const createAssetsModel = require("./models/assetModel");
+
 
 
 // Routes
@@ -39,16 +38,12 @@ const getReviewRoute = require("./routers/products/reviews/getReview");
 
 
 const getUserRoute = require("./routers/users/getUser");
-const deleteCartRoute = require("./routers/carts/deleteCart");
-const putCartRoute= require("./routers/carts/putCart");
-
-
-const getCart = require("./routers/carts/getCart.js");
-const postOrderRoute = require("./routers/orders/postNewOrder.js");
-const deleteOrderRoute = require("./routers/orders/deleteOrder.js");
-const updateOrderRoute = require("./routers/orders/putOrder.js");
-const getOrderRoute = require("./routers/orders/getOrder.js");
-const getOrderbycusRoute = require("./routers/orders/getOrderbyCustomer.js");
+const deleteCartRoute = require("./routers/cart/deleteCart");
+const putCartRoute = require("./routers/cart/putCart");
+const postAssetsRoute = require("./routers/products/assets/postAssets");
+const getAssetsRoute =require("./routers/products/assets/getAssets");
+const putAssetRoute = require("./routers/products/assets/putAssets");
+const deleteAssetsRoute = require("./routers/products/assets/deleteAssets");
 
 const app = express();
 
@@ -68,10 +63,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
     const Product = createProductModel(productDB);
     const User = createUserModel(userDB);
     const Cart = createCartModel(userDB);
-    const Variant = createVariantModel(productDB);
-    const Review = createReviewModel(productDB);
-    const Order = createOrderModel(userDB);
-
+    const Assets =createAssetsModel(productDB); 
 
     // 3️⃣ Mount routes
     app.use("/products", postNewProductRoute(Product));
@@ -84,22 +76,12 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
     app.use("/cart",postAddCartRoute(Cart));
     app.use("/cart",getCartRoute(Cart));
     app.use("/cart", deleteCartRoute(Cart));
-    app.use("/variants", postNewVariantRoute(Variant));
-    app.use("/variants", deleteVariantRoute(Variant)); 
-    app.use("/variants", updateVariantRoute(Variant));
-    app.use("/variants", getVariantRoute(Variant));
-    app.use("/reviews", postReviewRoute(Review));
-    app.use("/reviews", deleteReviewRoute(Review));
-    app.use("/reviews", updateReviewRoute(Review));
-    app.use("/reviews", getReviewRoute(Review));
-    app.use("/orders", postOrderRoute(Order));
-    app.use("/orders",deleteOrderRoute(Order));
-    app.use("/orders",updateOrderRoute(Order));
-    app.use("/orders",getOrderRoute(Order));
-    app.use("/orders",getOrderbycusRoute(Order));
-    // delete route mounted after User model is ready
-  
-  
+    app.use("/cart", putCartRoute(Cart));
+    app.use("/assets",postAssetsRoute(Assets));
+    app.use("/assets",putAssetRoute(Assets));
+    app.use("/assets",getAssetsRoute(Assets));
+    app.use("/assets",deleteAssetsRoute(Assets));
+
     // 4️⃣ Start server
     app.listen(5000, () => console.log("🚀 Server running on port 5000"));
   } catch (err) {
